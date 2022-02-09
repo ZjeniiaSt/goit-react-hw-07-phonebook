@@ -3,7 +3,7 @@ import { BsPersonCircle } from 'react-icons/bs';
 import { BsFillTelephoneFill } from 'react-icons/bs';
 import { Form, FormInput, FormLabel, AddButton } from './ContactForm.styled';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from '../../redux/phonebook-actions';
+import { addContact } from '../../redux/phonebook-operations';
 import { getContacts } from '../../redux/phonebook-selectors';
 
 function ContactForm() {
@@ -17,7 +17,9 @@ function ContactForm() {
     e.preventDefault();
 
     contacts.some(
-      contact => contact.name.toLowerCase() === name.toLowerCase() || contact.number === number,
+      contact =>
+        contact.name.toLowerCase() === name.toLowerCase() ||
+        contact.number === number,
     )
       ? alert(`${name} is alredy in contacts`)
       : dispatch(addContact({ name, number }));
