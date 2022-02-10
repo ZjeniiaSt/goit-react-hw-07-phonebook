@@ -2,7 +2,6 @@ import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import phonebookReducer from './phonebook-reducer';
 import logger from 'redux-logger';
 import {
-  persistStore,
   FLUSH,
   REHYDRATE,
   PAUSE,

@@ -8,14 +8,7 @@ import {
   addContact,
 } from './phonebook-operations';
 
-const initState = {
-  items: [],
-  filter: '',
-  isLoading: false,
-  error: null,
-};
-
-const items = createReducer(initState.items, {
+const items = createReducer([], {
   [fetchContacts.fulfilled]: (state, { payload }) => payload,
   [addContact.fulfilled]: (state, { payload }) => [payload, ...state],
 
@@ -23,11 +16,11 @@ const items = createReducer(initState.items, {
     state.filter(({ id }) => id !== payload.id),
 });
 
-const filter = createReducer(initState.filter, {
+const filter = createReducer('', {
   [changeFilter]: (_, { payload }) => payload,
 });
 
-const loading = createReducer(initState.isLoading, {
+const loading = createReducer(false, {
   [fetchContacts.pending]: () => true,
   [fetchContacts.fulfilled]: () => false,
   [fetchContacts.rejected]: () => false,
@@ -39,7 +32,7 @@ const loading = createReducer(initState.isLoading, {
   [deleteContact.rejected]: () => false,
 });
 
-const error = createReducer(initState.error, {
+const error = createReducer(null, {
   [fetchContacts.rejected]: (_, { payload }) => payload,
   [addContact.rejected]: (_, { payload }) => payload,
   [deleteContact.rejected]: (_, { payload }) => payload,

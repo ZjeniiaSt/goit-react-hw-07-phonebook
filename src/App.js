@@ -9,10 +9,10 @@ import { getLoading } from './redux/phonebook-selectors';
 function App() {
   return (
     <Container title="Phonebook">
-      {getLoading && <Load />}
       <ContactForm />
       <Filter />
-      <ContactList>{getLoading && <Load />}</ContactList>
+      {getLoading && <Load />}
+      <ContactList></ContactList>
     </Container>
   );
 }
